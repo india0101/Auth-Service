@@ -1,0 +1,4 @@
+rootProject.name = 'Auth-Service'
+ext {
+    localhostPort = '8081'
+}

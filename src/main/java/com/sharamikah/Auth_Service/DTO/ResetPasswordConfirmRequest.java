@@ -1,0 +1,20 @@
+package com.sharamikah.Auth_Service.DTO;
+
+
+import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ResetPasswordConfirmRequest {
+
+    @NotBlank
+    private String token;
+
+    @NotBlank
+    private String newPassword;
+}
+
