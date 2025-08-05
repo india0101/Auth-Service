@@ -1,10 +1,13 @@
 package com.sharamikah.Auth_Service.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sharamikah.Auth_Service.domain.enums.AccountStatus;
 import com.sharamikah.Auth_Service.domain.enums.AuthProvider;
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.validator.constraints.UUID;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -15,7 +18,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "app_user")
-public class AppUser {
+public class AppUser implements UserDetails {
 
     @Id
     @UuidGenerator
@@ -23,6 +26,7 @@ public class AppUser {
     private UUID id;
 
     @Column(nullable = false, unique = true)
+    @JsonIgnore
     private String email;
 
     @Column(name = "password_hash", nullable = false)
@@ -56,6 +60,7 @@ public class AppUser {
     private Instant lastLogin;
     private Long tenantId;
 
+    @CreationTimestamp
     @Column(nullable = false, updatable = false)
     private Instant createdAt = Instant.now();
 
